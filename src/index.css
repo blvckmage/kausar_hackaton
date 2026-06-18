@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a0a0f;
+  --color-card-bg: rgba(255, 255, 255, 0.03);
+}
+
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-from: #4f46e5;
+    --accent-to: #9333ea;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
+    --bg-primary: #0a0a0f;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-from: #6366f1;
+    --accent-to: #a855f7;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-blob {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-blob-delayed {
+  animation: float 8s ease-in-out 4s infinite;
+}
+
+.glass {
+  background-color: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+}
+
+.glass-card {
+  background-color: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  transform: scale(1.03) translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
