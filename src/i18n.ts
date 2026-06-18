@@ -17,10 +17,11 @@ const resources = {
         logout: "Выйти"
       },
       home: {
-        badge: "Платформа нового поколения",
-        title1: "Твой путь к",
-        title2: "успеху начинается здесь",
-        subtitle: "Подготовка к олимпиадам, поиск стажировок и умный AI-ассистент, который всегда готов помочь и составить план.",
+        badge: "EdTech-платформа Mentoria · 3 200+ учеников",
+        title1: "Все возможности и",
+        title2: "асинхронные курсы",
+        title3: "в одном месте",
+        subtitle: "Выбирай олимпиады, стажировки и стипендии по своему профилю и учись в удобном темпе — даже если не успеваешь на живые занятия.",
         start_free: "Начать бесплатно",
         explore: "Изучить возможности",
         ai_placeholder: "Спроси AI: Как подготовиться к SAT?",
@@ -83,10 +84,11 @@ const resources = {
         logout: "Шығу"
       },
       home: {
-        badge: "Жаңа буын платформасы",
-        title1: "Сенің табысқа",
-        title2: "апарар жолың осы жерден басталады",
-        subtitle: "Олимпиадаларға дайындық, тағылымдама іздеу және әрқашан көмектесуге дайын ақылды AI-көмекшісі.",
+        badge: "Mentoria EdTech платформасы · 3 200+ оқушы",
+        title1: "Барлық мүмкіндіктер мен",
+        title2: "асинхронды курстар",
+        title3: "бір жерде",
+        subtitle: "Өз бейініңе сай олимпиадалар, тағылымдамалар мен стипендиялар тауып, ыңғайлы қарқынмен оқы — тіпті тікелей сабаққа қатыса алмасаң да.",
         start_free: "Тегін бастау",
         explore: "Мүмкіндіктерді зерттеу",
         ai_placeholder: "AI-дан сұра: SAT-қа қалай дайындалу керек?",
@@ -149,10 +151,11 @@ const resources = {
         logout: "Log out"
       },
       home: {
-        badge: "Next Generation Platform",
-        title1: "Your path to",
-        title2: "success starts here",
-        subtitle: "Preparation for olympiads, internship search, and a smart AI assistant ready to help and build your plan.",
+        badge: "Mentoria EdTech platform · 3,200+ students",
+        title1: "All opportunities and",
+        title2: "async courses",
+        title3: "in one place",
+        subtitle: "Find olympiads, internships and scholarships matching your profile, and learn at your own pace — even if you miss live classes.",
         start_free: "Start for free",
         explore: "Explore features",
         ai_placeholder: "Ask AI: How to prepare for SAT?",

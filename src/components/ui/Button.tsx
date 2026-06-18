@@ -17,10 +17,10 @@ export function Button({
   const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-primary disabled:opacity-50 disabled:pointer-events-none';
   
   const variants = {
-    primary: 'bg-gradient-to-r from-[--accent-from] to-[--accent-to] text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] border border-transparent',
-    secondary: 'bg-white/10 text-white hover:bg-white/20 border border-white/5',
-    outline: 'bg-transparent text-white border border-[--accent-from] hover:bg-[--accent-from]/10',
-    ghost: 'bg-transparent text-white hover:bg-white/10',
+    primary: 'bg-gradient-to-r from-[var(--gradient-text-from)] to-[var(--gradient-text-to)] text-white hover:scale-105 hover:shadow-[0_0_20px_rgba(219,39,119,0.3)] border border-transparent',
+    secondary: 'bg-[var(--card-bg)] text-[var(--text-main)] hover:bg-black/5 border border-[var(--border-color)]',
+    outline: 'bg-transparent text-[var(--text-main)] border border-[var(--border-color)] hover:bg-black/5',
+    ghost: 'bg-transparent text-[var(--text-main)] hover:bg-black/5',
   };
 
   const sizes = {

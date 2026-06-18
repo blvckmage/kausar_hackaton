@@ -7,31 +7,30 @@
 
 @layer base {
   :root {
-    --bg-primary: #f8fafc;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --accent-from: #4f46e5;
-    --accent-to: #9333ea;
-    --card-bg: rgba(255, 255, 255, 0.8);
-    --border-color: rgba(0, 0, 0, 0.1);
-  }
-
-  .dark {
-    --bg-primary: #0a0a0f;
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-    --accent-from: #6366f1;
-    --accent-to: #a855f7;
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --border-color: rgba(255, 255, 255, 0.1);
+    /* Matcha / Pinkish Light Theme */
+    --bg-main: #fcf8f6;
+    --text-main: #2d2a26;
+    --text-muted: #6b7280;
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --border-color: rgba(0, 0, 0, 0.08);
+    --accent-glow-1: rgba(244, 114, 182, 0.3); /* Pink */
+    --accent-glow-2: rgba(167, 243, 208, 0.4); /* Emerald/Matcha */
+    --pill-bg: rgba(0, 0, 0, 0.05);
+    --pill-text: #2d2a26;
+    --gradient-text-from: #db2777;
+    --gradient-text-to: #9d174d;
+    --accent-from: #f472b6;
+    --accent-to: #a7f3d0;
+    --nav-icon: #6b7280;
   }
 
   body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: var(--bg-main);
+    color: var(--text-main);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 }
 
@@ -93,8 +92,8 @@ html {
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-from), var(--accent-to));
+.gradient-text-custom {
+  background: linear-gradient(135deg, var(--gradient-text-from), var(--gradient-text-to));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

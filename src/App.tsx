@@ -10,6 +10,7 @@ import { Profile } from './pages/Profile';
 import { Forum } from './pages/Forum';
 import { Olympiads } from './pages/Olympiads';
 import { Courses } from './pages/Courses';
+import { Roadmap } from './pages/Roadmap';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import { useStore } from './store/useStore';
 import { useEffect } from 'react';
@@ -43,6 +44,7 @@ function App() {
           <Route path="/olympiads" element={<Olympiads />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/calendar" element={<Calendar />} />
+          <Route path="/roadmap" element={<Roadmap />} />
           
           <Route path="/profile" element={
             <ProtectedRoute>

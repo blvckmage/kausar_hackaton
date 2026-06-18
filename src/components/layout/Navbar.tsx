@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BookOpen, Menu, X, User, Sun, Moon, LogOut, Settings } from 'lucide-react';
+import { BookOpen, Menu, X, User, Sun, Moon, LogOut, Settings, LayoutGrid, Calendar, Route, Shield, Search, Zap, GraduationCap } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from 'next-themes';
@@ -32,79 +32,84 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-[--bg-primary]/80 backdrop-blur-md border-b border-[--border-color] py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-[var(--card-bg)] backdrop-blur-md border-b border-[var(--border-color)] py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 cursor-pointer">
-            <div className="p-2 bg-gradient-to-br from-[--accent-from] to-[--accent-to] rounded-xl">
-              <BookOpen className="w-6 h-6 text-white" />
+          <Link to="/" className="flex items-center gap-3 cursor-pointer">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[var(--accent-from)] to-[var(--accent-to)] flex items-center justify-center">
+              <GraduationCap className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-[--text-primary]">
-              Mentoria<span className="text-[--accent-from]">Hub</span>
-            </span>
+            <div className="flex items-center">
+              <span className="text-xl font-bold tracking-tight text-[var(--text-main)]">Mentoria Hub</span>
+            </div>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/courses" className="text-sm font-medium text-[--text-secondary] hover:text-[--accent-from] transition-colors">Курсы</Link>
-            <Link to="/olympiads" className="text-sm font-medium text-[--text-secondary] hover:text-[--accent-from] transition-colors">Олимпиады</Link>
-            <Link to="/calendar" className="text-sm font-medium text-[--text-secondary] hover:text-[--accent-from] transition-colors">Календарь</Link>
-            <Link to="/forum" className="text-sm font-medium text-[--text-secondary] hover:text-[--accent-from] transition-colors">Форум</Link>
+          <div className="hidden md:flex items-center gap-6">
+            <Link to="/olympiads" className="text-sm font-medium text-[--nav-icon] hover:text-[--text-main] transition-colors flex items-center gap-2">
+              <Zap className="w-4 h-4" /> {t('nav.olympiads')}
+            </Link>
+            <Link to="/courses" className="text-sm font-medium text-[--nav-icon] hover:text-[--text-main] transition-colors flex items-center gap-2">
+              <BookOpen className="w-4 h-4" /> {t('nav.courses')}
+            </Link>
+            <Link to="/profile" className="text-sm font-medium text-[--nav-icon] hover:text-[--text-main] transition-colors flex items-center gap-2">
+              <LayoutGrid className="w-4 h-4" /> {t('nav.profile')}
+            </Link>
+            <Link to="/calendar" className="text-sm font-medium text-[--nav-icon] hover:text-[--text-main] transition-colors flex items-center gap-2">
+              <Calendar className="w-4 h-4" /> {t('nav.calendar')}
+            </Link>
+            <Link to="/roadmap" className="text-sm font-medium text-[--nav-icon] hover:text-[--text-main] transition-colors flex items-center gap-2">
+              <Route className="w-4 h-4" /> Roadmap
+            </Link>
             {user?.role === 'admin' && (
-              <Link to="/admin" className="text-sm font-medium text-[--accent-from] hover:text-[--accent-to] transition-colors flex items-center gap-1">
-                <Settings className="w-4 h-4" /> Админка
+              <Link to="/admin" className="text-sm font-medium text-[--nav-icon] hover:text-[--text-main] transition-colors flex items-center gap-2">
+                <Shield className="w-4 h-4" /> {t('nav.admin')}
               </Link>
             )}
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center bg-white/5 rounded-lg p-1 mr-2 border border-white/10">
+            {/* Desktop Language Switcher */}
+            <div className="flex items-center bg-[var(--card-bg)] rounded-lg p-1 mr-2 border border-[var(--border-color)]">
               {(['kz', 'ru', 'en'] as const).map((lang) => (
                 <button
                   key={lang}
                   onClick={() => i18n.changeLanguage(lang)}
                   className={`px-2 py-1 text-xs font-medium rounded-md uppercase transition-colors ${
                     i18n.language === lang 
-                      ? 'bg-[--accent-from] text-white' 
-                      : 'text-[--text-secondary] hover:text-[--text-primary]'
+                      ? 'bg-[var(--accent-from)] text-white' 
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
                   }`}
                 >
                   {lang}
                 </button>
               ))}
             </div>
-            
-            <NotificationDropdown />
 
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="text-[--text-secondary] hover:text-[--accent-from] transition-colors p-2"
-            >
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            <button className="text-[--nav-icon] hover:text-[--text-main] transition-colors p-2">
+              <Search className="w-5 h-5" />
             </button>
             
             {user ? (
               <div className="flex items-center gap-4 ml-2">
-                <Link to="/profile" className="flex items-center gap-2 text-[--text-secondary] hover:text-[--text-primary] transition-colors font-medium">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[--accent-from] to-[--accent-to] flex items-center justify-center text-sm text-white font-bold">
+                <Link to="/profile" className="flex items-center gap-2 text-[--nav-icon] hover:text-[--text-main] transition-colors font-medium">
+                  <div className="w-8 h-8 rounded-full bg-[#4f46e5] flex items-center justify-center text-sm text-white font-bold">
                     {user.full_name?.charAt(0).toUpperCase() || user.email.charAt(0).toUpperCase()}
                   </div>
-                  <span className="hidden lg:block">{user.full_name}</span>
                 </Link>
-                <button onClick={handleLogout} className="text-[--text-secondary] hover:text-red-500 p-2">
+                <button onClick={handleLogout} className="text-[--nav-icon] hover:text-red-500 p-2">
                   <LogOut className="w-5 h-5" />
                 </button>
               </div>
             ) : (
               <>
-                <Button variant="secondary" size="sm" className="gap-2" onClick={() => navigate('/login')}>
-                  <User className="w-4 h-4" />
+                <Button variant="ghost" size="sm" className="text-[--text-main]" onClick={() => navigate('/login')}>
                   {t('nav.login')}
                 </Button>
-                <Button size="sm" onClick={() => navigate('/register')}>{t('nav.start')}</Button>
+                <Button variant="primary" size="sm" onClick={() => navigate('/register')}>{t('nav.start')}</Button>
               </>
             )}
           </div>
@@ -137,16 +142,16 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[--bg-primary]/95 backdrop-blur-xl border-b border-[--border-color] animate-fade-in-up">
+        <div className="md:hidden absolute top-full left-0 w-full bg-[--bg-main] backdrop-blur-xl border-b border-[--border-color] animate-fade-in-up">
           <div className="px-4 pt-2 pb-6 space-y-4">
-            <Link to="/courses" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-primary] hover:bg-black/5 dark:hover:bg-white/5">{t('nav.courses')}</Link>
-            <Link to="/olympiads" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-primary] hover:bg-black/5 dark:hover:bg-white/5">{t('nav.olympiads')}</Link>
-            <Link to="/calendar" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-primary] hover:bg-black/5 dark:hover:bg-white/5">{t('nav.calendar')}</Link>
-            <Link to="/forum" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-primary] hover:bg-black/5 dark:hover:bg-white/5">{t('nav.forum')}</Link>
+            <Link to="/olympiads" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-main] hover:bg-white/5">{t('nav.olympiads')}</Link>
+            <Link to="/courses" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-main] hover:bg-white/5">{t('nav.courses')}</Link>
+            <Link to="/profile" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-main] hover:bg-white/5">{t('nav.profile')}</Link>
+            <Link to="/calendar" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-main] hover:bg-white/5">{t('nav.calendar')}</Link>
+            <Link to="/roadmap" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-main] hover:bg-white/5">Roadmap</Link>
             {user?.role === 'admin' && (
-              <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-primary] hover:bg-black/5 dark:hover:bg-white/5">{t('nav.admin')}</Link>
+              <Link to="/admin" onClick={() => setIsMobileMenuOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium text-[--text-main] hover:bg-white/5">{t('nav.admin')}</Link>
             )}
             <div className="pt-4 flex flex-col gap-3">
               {user ? (
@@ -157,7 +162,7 @@ export function Navbar() {
               ) : (
                 <>
                   <Button variant="secondary" className="w-full justify-center" onClick={() => { navigate('/login'); setIsMobileMenuOpen(false); }}>{t('nav.login')}</Button>
-                  <Button className="w-full justify-center" onClick={() => { navigate('/register'); setIsMobileMenuOpen(false); }}>{t('home.start_free')}</Button>
+                  <Button variant="primary" className="w-full justify-center" onClick={() => { navigate('/register'); setIsMobileMenuOpen(false); }}>{t('nav.start')}</Button>
                 </>
               )}
             </div>
