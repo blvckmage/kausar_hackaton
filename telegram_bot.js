@@ -1,6 +1,7 @@
 import TelegramBot from 'node-telegram-bot-api';
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
+import http from 'http';
 
 
 dotenv.config();
@@ -17,6 +18,16 @@ if (!token) {
 
 const bot = new TelegramBot(token, { polling: true });
 const supabase = createClient(supabaseUrl, supabaseKey);
+
+// Dummy HTTP server to satisfy Render's port binding requirement for Web Services
+const port = process.env.PORT || 3000;
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Bot is running!\n');
+});
+server.listen(port, () => {
+  console.log(`🌐 Web server listening on port ${port}`);
+});
 
 console.log('🤖 Telegram Bot is running...');
 
